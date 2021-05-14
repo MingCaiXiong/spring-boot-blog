@@ -4,8 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import top.xiongmingcai.blog.model.dao.ArticleMapper;
 import top.xiongmingcai.blog.model.pojo.Article;
+import top.xiongmingcai.blog.model.pojo.Tag;
 import top.xiongmingcai.blog.model.vo.ArticleVo;
 import top.xiongmingcai.blog.service.ArticleService;
+import top.xiongmingcai.blog.service.TagService;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -23,6 +25,7 @@ import java.util.Objects;
 @Service
 public class ArticleServiceImpl implements ArticleService {
   @Resource private ArticleMapper articleMapper;
+  @Resource private TagService tagService;
 
   /**
    * 得到一篇文章
@@ -33,7 +36,10 @@ public class ArticleServiceImpl implements ArticleService {
   @Override
   public ArticleVo getOneArticle(Long uuid) {
     Article article = getArticle(uuid);
-    return toVo(article);
+    ArticleVo articleVo = toVo(article);
+    List<Tag> tags = tagService.selectTagArticleByAid(article.getUuid());
+    articleVo.setTags(tags);
+    return articleVo;
   }
   /**
    * 查找文章列表菜单
@@ -87,7 +93,8 @@ public class ArticleServiceImpl implements ArticleService {
     ClassLoader classLoader = getClass().getClassLoader();
     File file =
         new File(
-            Objects.requireNonNull(classLoader.getResource("docs/" + String.valueOf(uuid) + ".md"))
+            Objects.requireNonNull(
+                    classLoader.getResource("static/docs/" + String.valueOf(uuid) + ".md"))
                 .getFile());
     String data = null;
     try {

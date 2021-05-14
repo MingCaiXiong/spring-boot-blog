@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiongmingcai.blog.model.dao.TagMapper">
+    <select id="selectTagArticleByAid" resultType="top.xiongmingcai.blog.model.pojo.Tag">
+        select *
+        from article
+                 left join tag_article on tag_article.aid = article.uuid
+                 left join tag on tag.id = tag_article.rid
+        where tag_article.aid = #{value};
+    </select>
+</mapper>

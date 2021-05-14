@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title><#if article.title??>${article.articleSource.dateadd}</#if> | 别忘了微笑</title>
+    <title><#if article.title??>${article.title}</#if> | 别忘了微笑</title>
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="alternate" href="../../atom.xml" title="Sanonz" type="application/atom+xml">
     <link rel="icon" href="../../images/favicon.ico">
+    <base href="/">
     <style type="text/css">@font-face {
             font-family: icomoon;
             src: url(../../fonts/icomoon%EF%B9%96q628ml.eot);
@@ -18,7 +19,7 @@
             font-style: normal
         }</style>
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="http://cdn1.uibe-iup.com/prism.css">
+    <link rel="stylesheet" href="css/prism.css">
 
     <!--[if lt IE 9]>
     <style type="text/css">.nav-inner {
@@ -38,7 +39,8 @@
         color: inherit;
     }
     </style>
-    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 <main class="app">
@@ -69,9 +71,18 @@
                     <input type="hidden" name="sitesearch" value="https://sanonz.github.io"></form>
                 <ol class="toc">
                     <#list articleVoList as item>
-                        <li class="toc-item toc-level-2"><a class="toc-link" href="/post/${item.articleSource.uuid?c}">
-                                <span class="toc-text"> ${item.title}</span></a>
-                        </li>
+
+                        <#if item.articleSource.uuid?c == article.articleSource.uuid?c>
+                            <li class="toc-item toc-level-2 active"><a class="toc-link"
+                                                                       href="/post/${item.articleSource.uuid?c}">
+                                    <span class="toc-text"> ${item.title}</span></a>
+                            </li>
+                        <#else>
+                            <li class="toc-item toc-level-2"><a class="toc-link"
+                                                                href="/post/${item.articleSource.uuid?c}">
+                                    <span class="toc-text"> ${item.title}</span></a>
+                            </li>
+                        </#if>
                     </#list>
                 </ol>
             </div>
@@ -88,11 +99,12 @@
                                   itemprop="datePublished"><#if article.title??>${article.articleSource.dateadd}</#if></time>
                         </a>
                         <div class="article-tag-list">
-                            <i class="icon-tag vm"></i>
-                            <a class="article-tag-link"
-                               href="../../tags/CI/index.html"
-                               rel="tag">CI</a>
-
+                            <#list article.tags as tag>
+                                <i class="icon-tag vm"></i>
+                                <a class="article-tag-link"
+                                   href="../../tags/CI/index.html"
+                                   rel="tag">${tag.name}</a>
+                            </#list>
                         </div>
                     </div>
                 </header>
@@ -100,34 +112,12 @@
                     <#if article.content??>${article.content}</#if>
                 </section>
             </article>
-            <a id="pagenext" href="../to-build-dark-and-light-theme-with-web/index.html" class="article-next"
-               title="在 WEB 端实现亮/暗主题跟随系统功能"><i class="icon-arrow-right"></i></a>
-            <a id="pageprev"
-               href="../make-hybrid-platform-cordova/index.html"
-               class="article-prev"
-               title="使用 Phonegap + Cordova 搭建混合开发平台"><i
-                        class="icon-arrow-left"></i></a>
-            <div class="comments">
-                <div id="comments"></div>
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                <script>new Gitalk({
-                        clientID: "2f728eb14f7e549408f7",
-                        clientSecret: "90be74e913959dcf39fbfed54458bdd20f95ac30",
-                        repo: "sanonz.github.io",
-                        owner: "sanonz",
-                        admin: ["sanonz"],
-                        id: "f8b53398add9e549b019d8ef4b4b0fd4",
-                        distractionFreeMode: !0,
-                        title: "利用 Github Actions 自动部署 Hexo 博客",
-                        body: "https://sanonz.github.io/2020/deploy-a-hexo-blog-from-github-actions/",
-                        labels: ["Hexo", "CI", "Github Actions"]
-                    }).render("comments")</script>
-            </div>
         </div>
     </div>
 
 </main>
+<script src="/webjars/jquery/2.1.1/jquery.js"></script>
 <script src="http://cdn1.uibe-iup.com/scrollspy.min.js"></script>
-<script src="http://cdn1.uibe-iup.com/prism.js"></script>
+<script src="js/prism.js"></script>
 </body>
 </html>

@@ -2,6 +2,9 @@ package top.xiongmingcai.blog.model.vo;
 
 import lombok.Data;
 import top.xiongmingcai.blog.model.pojo.Article;
+import top.xiongmingcai.blog.model.pojo.Tag;
+
+import java.util.List;
 
 @Data
 public class ArticleVo {
@@ -15,4 +18,6 @@ public class ArticleVo {
   private String content;
   /*源数据*/
   private Article articleSource;
+
+  private List<Tag> tags;
 }

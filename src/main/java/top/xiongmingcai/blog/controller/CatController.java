@@ -14,11 +14,11 @@ import javax.annotation.Resource;
  * @date 2021-05-12 19:46:27
  */
 @RestController
-@RequestMapping("/catalogs")
+@RequestMapping("/cat")
 public class CatController extends ApiController {
   @Resource private CatService catService;
 
-  @GetMapping
+  @GetMapping("all")
   public Object allDemo() {
     Cat catalog = catService.getCatalog();
     return success(catalog);
