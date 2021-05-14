@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import top.xiongmingcai.blog.model.pojo.Article;
 import top.xiongmingcai.blog.model.vo.ArticleVo;
 import top.xiongmingcai.blog.model.vo.CatVo;
 import top.xiongmingcai.blog.service.ArticleService;
@@ -31,5 +32,12 @@ public class PageController {
     modelMap.addAttribute("articleVoList", articleVoList);
     modelMap.addAttribute("catVoList", catVoList);
     return "index";
+  }
+
+  @RequestMapping()
+  public String post() {
+    Article lastModifiedArticle = articleService.getLastModifiedArticle();
+
+    return "redirect:/post/" + lastModifiedArticle.getUuid();
   }
 }

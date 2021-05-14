@@ -16,4 +16,10 @@
                  left join article on article.uuid = cat_article.aid
         where aid = #{aid};
     </select>
+    <select id="getLastModifiedArticle" resultType="top.xiongmingcai.blog.model.pojo.Article">
+        select *
+        from article
+        order by dateModif
+        limit 3,1;
+    </select>
 </mapper>

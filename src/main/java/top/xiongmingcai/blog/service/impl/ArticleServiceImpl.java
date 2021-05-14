@@ -30,6 +30,12 @@ public class ArticleServiceImpl implements ArticleService {
   @Resource private ArticleMapper articleMapper;
   @Resource private TagService tagService;
 
+  @Override
+  public Article getLastModifiedArticle() {
+    Article article = articleMapper.getLastModifiedArticle();
+    return article;
+  }
+
   /**
    * 得到一篇文章
    *

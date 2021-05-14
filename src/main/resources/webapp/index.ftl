@@ -52,9 +52,14 @@
                 <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
             </div>
             <nav id="nav-inner" class="nav-inner">
-                <#list catVoList as item>
-                    <a class="nav-item" onclick="catClick(${item.uuid?c})" href="javascript:0;"
-                       data-rid="${item.uuid?c}"><span class="nav-text">${item.name}</span> </a>
+                <#list catVoList as cat>
+                    <#if cat.uuid == article.articleSource.rid>
+                        <a class="nav-item active" onclick="catClick(${cat.uuid?c})" href="javascript:0;"
+                           data-rid="${article.articleSource.uuid?c}"><span class="nav-text">${cat.name}</span> </a>
+                    <#else>
+                        <a class="nav-item " onclick="catClick(${cat.uuid?c})" href="javascript:0;"
+                           data-rid="${article.articleSource.uuid?c}"><span class="nav-text">${cat.name}</span> </a>
+                    </#if>
                 </#list>
             </nav>
         </div>
@@ -71,7 +76,8 @@
                         <#if item.articleSource.uuid?c == article.articleSource.uuid?c>
                             <li class="toc-item toc-level-2 active"><a class="toc-link"
                                                                        href="/post/${item.articleSource.uuid?c}">
-                                    <span class="toc-text"> ${item.title}</span></a>
+                                    <span data-rid="${item.articleSource.rid?c}" data-aid="${item.articleSource.uuid?c}"
+                                          class="toc-text"> ${item.title}</span></a>
                             </li>
                         <#else>
                             <li class="toc-item toc-level-2"><a class="toc-link"

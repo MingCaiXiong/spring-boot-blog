@@ -35,4 +35,6 @@ public interface ArticleMapper extends BaseMapper<Article> {
    * @return 文章列表
    */
   List<Article> selectCatArticleByRid(@Param("rid") Long rid);
+
+  Article getLastModifiedArticle();
 }
