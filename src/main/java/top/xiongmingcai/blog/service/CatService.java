@@ -1,6 +1,9 @@
 package top.xiongmingcai.blog.service;
 
 import top.xiongmingcai.blog.model.pojo.Cat;
+import top.xiongmingcai.blog.model.vo.CatVo;
+
+import java.util.List;
 
 /**
  * Service：
@@ -19,4 +22,6 @@ public interface CatService {
    * @return 文章列表
    */
   Cat getOneCat(Long rId);
+
+  List<CatVo> catVoList();
 }

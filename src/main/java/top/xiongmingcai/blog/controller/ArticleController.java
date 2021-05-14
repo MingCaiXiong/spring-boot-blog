@@ -30,10 +30,4 @@ public class ArticleController extends ApiController {
     List<ArticleVo> articleList = articleService.selectCatArticleByRid(catUuid);
     return success(articleList);
   }
-
-  @GetMapping("/cats/{rid}")
-  public Object findCatlist(@PathVariable("rid") Long rid) {
-    List<ArticleVo> articleList = articleService.selectCatArticleByRid(rid);
-    return success(articleList);
-  }
 }

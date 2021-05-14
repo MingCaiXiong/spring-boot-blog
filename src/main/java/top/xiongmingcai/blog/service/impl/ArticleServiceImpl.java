@@ -3,8 +3,6 @@ package top.xiongmingcai.blog.service.impl;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import top.xiongmingcai.blog.model.dao.ArticleMapper;
 import top.xiongmingcai.blog.model.pojo.Article;

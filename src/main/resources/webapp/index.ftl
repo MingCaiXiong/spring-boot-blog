@@ -44,32 +44,28 @@
 </head>
 <body>
 <main class="app">
-    <header id="header" class="header clearfix">
-        <div id="nav" class="nav">
+    <header id="header" class="header clearfix" style="width: 460px">
+        <div id="nav" class="nav" style="width: 140px">
             <div class="nav-mobile">
                 <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
                 <h1 class="nav-mobile-title nav-mobile-item">Sanonz</h1>
                 <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
             </div>
-            <nav id="nav-inner" class="nav-inner"><a class="nav-item" href="../../index.html"><span
-                            class="nav-text">首页</span> </a><a class="nav-item"
-                                                              href="../../categories/front-end/index.html"><span
-                            class="nav-text">前端</span> </a><a class="nav-item"
-                                                              href="../../categories/back-end/index.html"><span
-                            class="nav-text">后端</span> </a><a class="nav-item" href="../../tags/index.html"><span
-                            class="nav-text">标签</span> </a><a class="nav-item" href="../../archives/index.html"><span
-                            class="nav-text">归档</span> </a><a class="nav-item" href="../../atom.xml"><span
-                            class="nav-text">订阅</span> </a><a class="nav-item" href="../../about/index.html"><span
-                            class="nav-text">关于</span></a></nav>
+            <nav id="nav-inner" class="nav-inner">
+                <#list catVoList as item>
+                    <a class="nav-item" onclick="catClick(${item.uuid?c})" href="javascript:0;"
+                       data-rid="${item.uuid?c}"><span class="nav-text">${item.name}</span> </a>
+                </#list>
+            </nav>
         </div>
-        <aside id="aside" class="aside">
+        <aside id="aside" class="aside" style="width: 320px">
             <div id="aside-mask" class="aside-mask"></div>
             <div id="aside-inner" class="aside-inner">
                 <form action="https://google.com/search" method="get" accept-charset="UTF-8" class="search-form">
                     <input type="search" name="q" class="search-form-input" placeholder="Search">
                     <button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button>
                     <input type="hidden" name="sitesearch" value="https://sanonz.github.io"></form>
-                <ol class="toc">
+                <ol id="catlist" class="toc">
                     <#list articleVoList as item>
 
                         <#if item.articleSource.uuid?c == article.articleSource.uuid?c>
@@ -88,7 +84,7 @@
             </div>
         </aside>
     </header>
-    <div id="content" class="content">
+    <div id="content" class="content" style="margin-left: 460px">
         <div id="wrapper" class="wrapper">
             <article class="article" itemscope itemprop="blogPost">
                 <header class="article-header"><h1 itemprop="name">  <#if article.title??>${article.title}</#if></h1>
@@ -117,6 +113,32 @@
 
 </main>
 <script src="/webjars/jquery/2.1.1/jquery.js"></script>
+<script>
+
+    function catClick(rid) {
+        var settings = {
+            "url": "http://localhost:8080/cats/" + rid,
+            "method": "GET",
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            var data = response.data;
+
+            var templates = '';
+            for (var i = 0; i < data.length; i++) {
+                (function (t) {
+                    const item = data[t];
+                    templates += '<li class="toc-item toc-level-2">' +
+                        '<a class="toc-link" href="/post/' + item.articleSource.uuid
+                        + '"<span class="toc-text">' + item.title + '</span></a>  </li>'
+                })(i)
+            }
+            $("#catlist").html(templates)
+        });
+    }
+
+</script>
 <script src="http://cdn1.uibe-iup.com/scrollspy.min.js"></script>
 <script src="js/prism.js"></script>
 </body>

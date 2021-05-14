@@ -5,9 +5,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.xiongmingcai.blog.model.vo.ArticleVo;
+import top.xiongmingcai.blog.model.vo.CatVo;
 import top.xiongmingcai.blog.service.ArticleService;
 import top.xiongmingcai.blog.service.CatService;
-import top.xiongmingcai.blog.utils.MarkdownUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,8 +25,11 @@ public class PageController {
     Long rid = article.getArticleSource().getRid();
     List<ArticleVo> articleVoList = articleService.selectCatArticleByRid(rid);
 
+    List<CatVo> catVoList = catService.catVoList();
+
     modelMap.addAttribute("article", article);
     modelMap.addAttribute("articleVoList", articleVoList);
+    modelMap.addAttribute("catVoList", catVoList);
     return "index";
   }
 }

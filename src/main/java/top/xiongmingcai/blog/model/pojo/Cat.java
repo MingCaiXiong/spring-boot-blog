@@ -26,13 +26,13 @@ public class Cat implements Serializable {
   /** */
   private Long uuid;
   /** */
-  private Object name;
+  private String name;
   /** */
   private Object docname;
   /** */
-  private Object cattype;
+  private Long cattype;
   /** */
-  private Object sort;
+  private Long sort;
   /** */
   private Object sorttype;
   /** 网站设置中的网站网址 */
