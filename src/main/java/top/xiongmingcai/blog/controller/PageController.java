@@ -24,9 +24,6 @@ public class PageController {
 
     Long rid = article.getArticleSource().getRid();
     List<ArticleVo> articleVoList = articleService.selectCatArticleByRid(rid);
-    // MarkDown文本转成HTML文本
-    String HTMLContent = MarkdownUtils.markdownToHtmlExtensitons(article.getContent());
-    article.setContent(HTMLContent);
 
     modelMap.addAttribute("article", article);
     modelMap.addAttribute("articleVoList", articleVoList);

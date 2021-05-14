@@ -16,6 +16,8 @@ public class ArticleVo {
   private String desContentTextOnly;
   /*文章的内容*/
   private String content;
+
+  private String markdown;
   /*源数据*/
   private Article articleSource;
 

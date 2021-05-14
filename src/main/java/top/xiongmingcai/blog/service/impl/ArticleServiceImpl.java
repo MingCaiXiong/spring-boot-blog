@@ -1,6 +1,10 @@
 package top.xiongmingcai.blog.service.impl;
 
 import org.apache.commons.io.FileUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import top.xiongmingcai.blog.model.dao.ArticleMapper;
 import top.xiongmingcai.blog.model.pojo.Article;
@@ -8,6 +12,7 @@ import top.xiongmingcai.blog.model.pojo.Tag;
 import top.xiongmingcai.blog.model.vo.ArticleVo;
 import top.xiongmingcai.blog.service.ArticleService;
 import top.xiongmingcai.blog.service.TagService;
+import top.xiongmingcai.blog.utils.MarkdownUtils;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -38,6 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
     Article article = getArticle(uuid);
     ArticleVo articleVo = toVo(article);
     List<Tag> tags = tagService.selectTagArticleByAid(article.getUuid());
+    // 设置标签
     articleVo.setTags(tags);
     return articleVo;
   }
@@ -61,27 +67,24 @@ public class ArticleServiceImpl implements ArticleService {
 
   private ArticleVo toVo(Article article) {
     ArticleVo articleVo = new ArticleVo();
-    String filedate = null;
+    String markdown = null;
     if (article != null) {
-      filedate = readMDFile(article.getUuid());
+      markdown = readMDFile(article.getUuid());
     }
+    articleVo.setMarkdown(markdown);
     articleVo.setArticleSource(article);
-    articleVo.setContent(getContent(filedate));
-    articleVo.setTitle(getTitle(filedate));
+
+    // MarkDown文本转成HTML文本
+    String HTMLContent = MarkdownUtils.markdownToHtmlExtensitons(markdown);
+    articleVo.setContent(HTMLContent);
+
+    Document doc = Jsoup.parse(HTMLContent);
+    String h1 = doc.getElementsByTag("h1").text();
+    doc.select("h1").remove();
+    String content = doc.getElementsByTag("body").html();
+    articleVo.setContent(content);
+    articleVo.setTitle(h1);
     return articleVo;
-  }
-
-  private String getTitle(String content) {
-    String a = content.substring(0, content.indexOf("\n"));
-
-    String substring = a.substring(a.lastIndexOf(32) + 1);
-
-    return substring;
-  }
-
-  private String getContent(String content) {
-    String substring = content.substring(content.indexOf("\n"));
-    return substring;
   }
 
   private Article getArticle(Long uuid) {
