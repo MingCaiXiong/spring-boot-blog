@@ -18,5 +18,5 @@ spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     password: ''
-    url: jdbc:sqlite:/Users/xmc/IdeaProjects/blog/mainlib.db
+    url: ${SQLITE_URL}
     username: ''
