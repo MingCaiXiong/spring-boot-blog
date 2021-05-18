@@ -123,7 +123,7 @@
 
     function catClick(rid) {
         var settings = {
-            "url": "http://localhost:8080/cats/" + rid,
+            "url": "/cats/" + rid,
             "method": "GET",
         };
 

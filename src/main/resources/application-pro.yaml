@@ -19,6 +19,6 @@ spring:
     static-locations: classpath:/static/
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: /root/IdeaProjects/mainlib.db
+    url: jdbc:sqlite:/root/IdeaProjects/blog/mainlib.db
     username: ''
     password: ''
