@@ -12,6 +12,7 @@ import top.xiongmingcai.blog.service.CatService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PageController {
@@ -39,5 +40,17 @@ public class PageController {
     Article lastModifiedArticle = articleService.getLastModifiedArticle();
 
     return "redirect:/post/" + lastModifiedArticle.getUuid();
+  }
+
+  @RequestMapping({"/cat/{rid}"})
+  public String cat(@PathVariable(value = "rid") Long rid, ModelMap modelMap) {
+    List<ArticleVo> articleList = articleService.selectCatArticleByRid(rid);
+
+    List<CatVo> catVoList = catService.catVoList();
+
+    modelMap.addAttribute("article", articleList.get(0));
+    modelMap.addAttribute("articleVoList", articleList);
+    modelMap.addAttribute("catVoList", catVoList);
+    return "index";
   }
 }

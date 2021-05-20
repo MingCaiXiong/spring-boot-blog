@@ -3,33 +3,17 @@
 
 
 :root {
-  --color-bg: @color-bg;
-  --color-primary: @color-primary;
-  --color-secondary: @color-secondary;
-  --color-muted: @color-muted;
-  --color-hover: @color-hover;
-  --color-active: @color-active;
-  --color-border: @color-border;
-  --color-link: @color-link;
-  --color-link-hover: @color-link-hover;
-  --color-nav: @color-nav;
-  --color-aside: @color-aside;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #2b2e32;
-    --color-primary: #eaeaea;
-    --color-secondary: #a0a0a0;
-    --color-muted: #a0a0a0;
-    --color-hover: #393939;
-    --color-active: #454444;
-    --color-border: #434343;
-    --color-link: #fd413c;
-    --color-link-hover: #fd413c;
-    --color-nav: #22252a;
-    --color-aside: #282b30;
-  }
+  --color-bg: #2b2e32;
+  --color-primary: #eaeaea;
+  --color-secondary: #a0a0a0;
+  --color-muted: #a0a0a0;
+  --color-hover: #393939;
+  --color-active: #454444;
+  --color-border: #434343;
+  --color-link: #fd413c;
+  --color-link-hover: #fd413c;
+  --color-nav: #22252a;
+  --color-aside: #282b30;
 }
 
 html, body, .app {
@@ -127,26 +111,3 @@ body {
     .transform(none);
   }
 });
-
-@media screen and (max-width: @size-mobile-screen-width) {
-  html, body, .app {
-    height: auto;
-  }
-
-  .header {
-    position: none;
-    position: static;
-    width: auto;
-
-    .nav, .aside {
-      float: none;
-    }
-  }
-
-  .content {
-    margin-left: 0;
-    padding: 10px 15px;
-    min-height: calc(~'100vh -' @size-mobile-nav-height * 2 + @size-footer-height + 25px);
-    overflow: initial;
-  }
-}

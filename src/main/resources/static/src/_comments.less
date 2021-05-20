@@ -570,110 +570,72 @@
   }
 }
 
-@media (max-width: 479px) {
-  .gt-container {
-    .gt-avatar {
-      width: 2em;
-      height: 2em;
-    }
 
-    .gt-avatar-github {
-      width: 1.875em;
-      height: 1.875em;
-    }
-
-    .gt-header-comment {
-      margin-left: 0.875em;
-    }
-
-    .gt-header-controls {
-      margin: 0;
-
-      .gt-btn {
-        float: none;
-        width: 100%;
-        margin: 0.75em 0 0;
-      }
-    }
-
-    .gt-header-controls-tip {
-      display: none;
-    }
-
-    .gt-comment-content {
-      margin-left: 0.875em;
-      padding: 0.625em 0.75em;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .gt-container {
-    .gt-user {
-      .gt-ico {
-        color: #999;
-      }
-    }
-
-    .gt-ico-github {
+.gt-container {
+  .gt-user {
+    .gt-ico {
       color: #999;
     }
+  }
 
-    .gt-meta {
-      border-bottom-color: #424242;
-    }
+  .gt-ico-github {
+    color: #999;
+  }
 
-    .gt-header-textarea {
-      color: #ececec;
+  .gt-meta {
+    border-bottom-color: #424242;
+  }
+
+  .gt-header-textarea {
+    color: #ececec;
+    background-color: #26272b;
+
+    &:hover {
       background-color: #26272b;
-
-      &:hover {
-        background-color: #26272b;
-        border-color: 1px solid rgba(0, 0, 0, 0.5);
-      }
+      border-color: 1px solid rgba(0, 0, 0, 0.5);
     }
+  }
 
-    .gt-btn-preview {
-      background-color: transparent;
+  .gt-btn-preview {
+    background-color: transparent;
+  }
+
+  .gt-comment-content {
+    background-color: #242629;
+  }
+
+  .gt-comment-text {
+    color: #a0a0a0;
+  }
+
+  .gt-comment-body {
+    color: #c7c7c7;
+
+    blockquote {
+      background-color: #2d2f31;
+      border-left-color: #494a4c;
     }
+  }
 
+  .gt-comment-content {
+    &:hover {
+      -webkit-box-shadow: 0 0.625em 3.75em 0 #272727;
+      box-shadow: 0 0.625em 3.75em 0 #272727;
+    }
+  }
+
+  .gt-comment-admin {
     .gt-comment-content {
-      background-color: #242629;
+      background-color: #252627;
     }
+  }
 
-    .gt-comment-text {
-      color: #a0a0a0;
-    }
+  .gt-popup {
+    background: #383636;
+    border-color: #5f5f5f;
+  }
 
-    .gt-comment-body {
-      color: #c7c7c7;
-
-      blockquote {
-        background-color: #2d2f31;
-        border-left-color: #494a4c;
-      }
-    }
-
-    .gt-comment-content {
-      &:hover {
-        -webkit-box-shadow: 0 0.625em 3.75em 0 #272727;
-        box-shadow: 0 0.625em 3.75em 0 #272727;
-      }
-    }
-
-    .gt-comment-admin {
-      .gt-comment-content {
-        background-color: #252627;
-      }
-    }
-
-    .gt-popup {
-      background: #383636;
-      border-color: #5f5f5f;
-    }
-
-    .gt-copyright {
-      border-top-color: #545252;
-    }
+  .gt-copyright {
+    border-top-color: #545252;
   }
 }

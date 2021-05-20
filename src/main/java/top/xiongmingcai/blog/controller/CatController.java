@@ -17,6 +17,7 @@ import java.util.List;
  * @date 2021-05-12 19:46:27
  */
 @RestController
+@RequestMapping("api")
 public class CatController extends ApiController {
   @Resource private CatService catService;
   @Resource private ArticleService articleService;

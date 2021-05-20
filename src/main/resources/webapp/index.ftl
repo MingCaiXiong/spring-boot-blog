@@ -19,8 +19,6 @@
             font-style: normal
         }</style>
     <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="css/prism.css">
-    <link rel="stylesheet" href="css/iconfont.css">
     <!--[if lt IE 9]>
     <style type="text/css">.nav-inner {
         top: 0;
@@ -54,11 +52,11 @@
             <nav id="nav-inner" class="nav-inner">
                 <#list catVoList as cat>
                     <#if cat.uuid == article.articleSource.rid>
-                        <a class="nav-item active" onclick="catClick(${cat.uuid?c})" href="javascript:0;"
+                        <a class="nav-item active" onclick="catClick(${cat.uuid?c})" href="/cat/${cat.uuid?c}"
                            data-rid="${article.articleSource.uuid?c}"> <span class="nav-text"><span
                                         class="iconfont icon-wenjian"></span>${cat.name}</span> </a>
                     <#else>
-                        <a class="nav-item " onclick="catClick(${cat.uuid?c})" href="javascript:0;"
+                        <a class="nav-item " onclick="catClick(${cat.uuid?c})" href="/cat/${cat.uuid?c}"
                            data-rid="${article.articleSource.uuid?c}"> <span class="nav-text"><span
                                         class="iconfont icon-wenjian"></span>${cat.name}</span> </a>
                     </#if>
@@ -103,12 +101,14 @@
                                   itemprop="datePublished"><#if article.title??>${article.articleSource.dateadd}</#if></time>
                         </a>
                         <div class="article-tag-list">
-                            <#list article.tags as tag>
-                                <i class="icon-tag vm"></i>
-                                <a class="article-tag-link"
-                                   href="../../tags/CI/index.html"
-                                   rel="tag">${tag.name}</a>
-                            </#list>
+                            <#if article.tags??>
+                                <#list article.tags as tag>
+                                    <i class="icon-tag vm"></i>
+                                    <a class="article-tag-link"
+                                       href="../../tags/CI/index.html"
+                                       rel="tag">${tag.name}</a>
+                                </#list>
+                            </#if>
                         </div>
                     </div>
                 </header>
@@ -133,32 +133,6 @@
     </footer>
 </main>
 <script src="/webjars/jquery/2.1.1/jquery.js"></script>
-<script>
-
-    function catClick(rid) {
-        var settings = {
-            "url": "/cats/" + rid,
-            "method": "GET",
-        };
-
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            var data = response.data;
-
-            var templates = '';
-            for (var i = 0; i < data.length; i++) {
-                (function (t) {
-                    const item = data[t];
-                    templates += '<li class="toc-item toc-level-2">' +
-                        '<a class="toc-link" href="/post/' + item.articleSource.uuid
-                        + '"<span class="toc-text">' + item.title + '</span></a>  </li>'
-                })(i)
-            }
-            $("#catlist").html(templates)
-        });
-    }
-
-</script>
 <script src="http://cdn1.uibe-iup.com/scrollspy.min.js"></script>
 <script src="js/prism.js"></script>
 </body>

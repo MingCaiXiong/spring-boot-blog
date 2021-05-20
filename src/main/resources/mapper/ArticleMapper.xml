@@ -7,6 +7,7 @@
         from cat_article
                  left join article on cat_article.aid = article.uuid
         where rid = #{rid}
+          and state = 1
         order by sort desc
     </select>
     <!-- 根据 cat_article aid 找一篇文章-->
@@ -14,11 +15,13 @@
         select *
         from cat_article
                  left join article on article.uuid = cat_article.aid
-        where aid = #{aid};
+        where aid = #{aid}
+          and state = 1;
     </select>
     <select id="getLastModifiedArticle" resultType="top.xiongmingcai.blog.model.pojo.Article">
         select *
         from article
+        where state = 1
         order by dateModif
         limit 3,1;
     </select>

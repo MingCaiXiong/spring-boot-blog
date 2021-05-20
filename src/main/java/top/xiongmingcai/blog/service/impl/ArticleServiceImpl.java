@@ -63,8 +63,9 @@ public class ArticleServiceImpl implements ArticleService {
     List<ArticleVo> articleVoList = new ArrayList<>();
     for (Article article : articles) {
       ArticleVo articleVo = toVo(article);
-
-      articleVoList.add(articleVo);
+      if (articleVo != null) {
+        articleVoList.add(articleVo);
+      }
     }
     return articleVoList;
   }
@@ -75,20 +76,24 @@ public class ArticleServiceImpl implements ArticleService {
     if (article != null) {
       markdown = readMDFile(article.getUuid());
     }
-    articleVo.setMarkdown(markdown);
-    articleVo.setArticleSource(article);
+    if (markdown.length() > 25) {
+      articleVo.setMarkdown(markdown);
+      articleVo.setArticleSource(article);
 
-    // MarkDown文本转成HTML文本
-    String HTMLContent = MarkdownUtils.markdownToHtmlExtensitons(markdown);
-    articleVo.setContent(HTMLContent);
+      // MarkDown文本转成HTML文本
+      String HTMLContent = MarkdownUtils.markdownToHtmlExtensitons(markdown);
+      articleVo.setContent(HTMLContent);
 
-    Document doc = Jsoup.parse(HTMLContent);
-    String h1 = doc.getElementsByTag("h1").text();
-    doc.select("h1").remove();
-    String content = doc.getElementsByTag("body").html();
-    articleVo.setContent(content);
-    articleVo.setTitle(h1);
-    return articleVo;
+      Document doc = Jsoup.parse(HTMLContent);
+      String h1 = doc.getElementsByTag("h1").text();
+      doc.select("h1").remove();
+      String content = doc.getElementsByTag("body").html();
+      articleVo.setContent(content);
+      articleVo.setTitle(h1);
+      return articleVo;
+    } else {
+      return null;
+    }
   }
 
   private Article getArticle(Long uuid) {
