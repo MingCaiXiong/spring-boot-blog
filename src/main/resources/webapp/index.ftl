@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title><#if article.title??>${article.title}</#if> | 别忘了微笑</title>
+    <title><#if article.title??>${article.title}</#if> | 代码笔记</title>
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -18,7 +18,7 @@
             font-weight: 400;
             font-style: normal
         }</style>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="css/prism.css">
 
     <!--[if lt IE 9]>
@@ -44,8 +44,8 @@
 </head>
 <body>
 <main class="app">
-    <header id="header" class="header clearfix" style="width: 460px">
-        <div id="nav" class="nav" style="width: 140px">
+    <header id="header" class="header clearfix">
+        <div id="nav" class="nav">
             <div class="nav-mobile">
                 <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
                 <h1 class="nav-mobile-title nav-mobile-item">Sanonz</h1>
@@ -63,7 +63,7 @@
                 </#list>
             </nav>
         </div>
-        <aside id="aside" class="aside" style="width: 320px">
+        <aside id="aside" class="aside">
             <div id="aside-mask" class="aside-mask"></div>
             <div id="aside-inner" class="aside-inner">
                 <form action="https://google.com/search" method="get" accept-charset="UTF-8" class="search-form">
@@ -90,7 +90,7 @@
             </div>
         </aside>
     </header>
-    <div id="content" class="content" style="margin-left: 460px">
+    <div id="content" class="content">
         <div id="wrapper" class="wrapper">
             <article class="article" itemscope itemprop="blogPost">
                 <header class="article-header"><h1 itemprop="name">  <#if article.title??>${article.title}</#if></h1>
@@ -116,7 +116,19 @@
             </article>
         </div>
     </div>
-
+    <footer class="footer">代码笔记由 <a href="https://github.com/MingCaiXiong/spring-boot-blog"
+                                    target="_blank">spring-boot + MWeb + SQlite</a>技术构建 ,部署在 <a
+                href="https://github.com/sanonz/hexo-theme-concise" target="_blank">hostdare主机商服务器</a>
+        <script>
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?dccbfa33e03652ccd3b526590fc8dbe3";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+    </footer>
 </main>
 <script src="/webjars/jquery/2.1.1/jquery.js"></script>
 <script>
