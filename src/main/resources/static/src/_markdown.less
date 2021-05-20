@@ -33,21 +33,21 @@
 
   /* Code blocks */
 
-  pre[class*="language-"] {
+  pre {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
     border-radius: 0.3em;
   }
 
-  :not(pre) > code[class*="language-"],
-  pre[class*="language-"] {
+  :not(pre) > code,
+  pre {
     background: #272822;
   }
 
   /* Inline code */
 
-  :not(pre) > code[class*="language-"] {
+  :not(pre) > code {
     padding: .1em;
     border-radius: .3em;
     white-space: normal;
@@ -749,33 +749,31 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .markdown-body {
-    a {
-      color: #70b3ff;
+.markdown-body {
+  a {
+    color: #70b3ff;
+  }
+
+  h1, h2, hr {
+    border-bottom-color: #484848;
+  }
+
+  blockquote {
+    background-color: #313338;
+    border-left-color: #686b6f;
+  }
+
+  table {
+    tr, th, td {
+      border-color: #3f4248;
     }
 
-    h1, h2, hr {
-      border-bottom-color: #484848;
+    tr:nth-child(2n) {
+      background-color: #303238;
     }
+  }
 
-    blockquote {
-      background-color: #313338;
-      border-left-color: #686b6f;
-    }
-
-    table {
-      tr, th, td {
-        border-color: #3f4248;
-      }
-
-      tr:nth-child(2n) {
-        background-color: #303238;
-      }
-    }
-
-    img, pre, code {
-      background-color: #272822;
-    }
+  img, pre, code {
+    background-color: #272822;
   }
 }

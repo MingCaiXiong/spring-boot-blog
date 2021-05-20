@@ -47,7 +47,6 @@ public class MarkdownUtils {
             .extensions(tableExtension)
             .attributeProviderFactory(
                 new AttributeProviderFactory() {
-
                   @Override
                   public AttributeProvider create(
                       AttributeProviderContext attributeProviderContext) {

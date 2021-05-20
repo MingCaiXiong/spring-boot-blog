@@ -381,19 +381,19 @@ body {
   hyphens: none;
 }
 
-.markdown-body pre[class*="language-"] {
+.markdown-body pre {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
   border-radius: 0.3em;
 }
 
-.markdown-body :not(pre) > code[class*="language-"],
-.markdown-body pre[class*="language-"] {
+.markdown-body :not(pre) > code,
+.markdown-body pre {
   background: #272822;
 }
 
-.markdown-body :not(pre) > code[class*="language-"] {
+.markdown-body :not(pre) > code {
   padding: 0.1em;
   border-radius: 0.3em;
   white-space: normal;
@@ -1092,37 +1092,35 @@ body {
   border-bottom-color: #eee;
 }
 
-@media (prefers-color-scheme: dark) {
-  .markdown-body a {
-    color: #70b3ff;
-  }
+.markdown-body a {
+  color: #70b3ff;
+}
 
-  .markdown-body h1,
-  .markdown-body h2,
-  .markdown-body hr {
-    border-bottom-color: #484848;
-  }
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body hr {
+  border-bottom-color: #484848;
+}
 
-  .markdown-body blockquote {
-    background-color: #313338;
-    border-left-color: #686b6f;
-  }
+.markdown-body blockquote {
+  background-color: #313338;
+  border-left-color: #686b6f;
+}
 
-  .markdown-body table tr,
-  .markdown-body table th,
-  .markdown-body table td {
-    border-color: #3f4248;
-  }
+.markdown-body table tr,
+.markdown-body table th,
+.markdown-body table td {
+  border-color: #3f4248;
+}
 
-  .markdown-body table tr:nth-child(2n) {
-    background-color: #303238;
-  }
+.markdown-body table tr:nth-child(2n) {
+  background-color: #303238;
+}
 
-  .markdown-body img,
-  .markdown-body pre,
-  .markdown-body code {
-    background-color: #272822;
-  }
+.markdown-body img,
+.markdown-body pre,
+.markdown-body code {
+  background-color: #272822;
 }
 
 .highlight {
