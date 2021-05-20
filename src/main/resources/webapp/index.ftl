@@ -20,7 +20,7 @@
         }</style>
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="css/prism.css">
-
+    <link rel="stylesheet" href="css/iconfont.css">
     <!--[if lt IE 9]>
     <style type="text/css">.nav-inner {
         top: 0;
@@ -55,10 +55,12 @@
                 <#list catVoList as cat>
                     <#if cat.uuid == article.articleSource.rid>
                         <a class="nav-item active" onclick="catClick(${cat.uuid?c})" href="javascript:0;"
-                           data-rid="${article.articleSource.uuid?c}"><span class="nav-text">${cat.name}</span> </a>
+                           data-rid="${article.articleSource.uuid?c}"> <span class="nav-text"><span
+                                        class="iconfont icon-wenjian"></span>${cat.name}</span> </a>
                     <#else>
                         <a class="nav-item " onclick="catClick(${cat.uuid?c})" href="javascript:0;"
-                           data-rid="${article.articleSource.uuid?c}"><span class="nav-text">${cat.name}</span> </a>
+                           data-rid="${article.articleSource.uuid?c}"> <span class="nav-text"><span
+                                        class="iconfont icon-wenjian"></span>${cat.name}</span> </a>
                     </#if>
                 </#list>
             </nav>
